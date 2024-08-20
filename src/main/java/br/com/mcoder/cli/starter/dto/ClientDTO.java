@@ -1,6 +1,9 @@
 package br.com.mcoder.cli.starter.dto;
 
 import br.com.mcoder.cli.starter.entities.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -12,9 +15,12 @@ import java.time.LocalDate;
 public class ClientDTO {
 
     private Long id;
+    @Size(min = 3, max = 80, message = "Nome precisa ter de 3 a 80 caracteres")
+    @NotBlank(message = "CAMPO REQUERIDO")
     private String name;
     private String cpf;
     private Double income;
+    @PastOrPresent(message = "A data deve estar no passado ou no presente.")
     private LocalDate birthDate;
     private Integer children;
 
